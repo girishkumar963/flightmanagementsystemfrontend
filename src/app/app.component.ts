@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FlightManagementSystemFrontend';
+  loggedIn: boolean;
+  customerloggedIn: boolean;
+  useremail: any;
+  password: any;
 }

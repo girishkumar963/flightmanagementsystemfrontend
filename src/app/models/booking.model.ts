@@ -1,6 +1,7 @@
 export interface Booking {
     id?: number;
     bookingId?: number;
-    bookingDate?: number;
+    bookingDate?: Date;
     noOfPassengers?: number;
+    ticketCost?:number;
 }
