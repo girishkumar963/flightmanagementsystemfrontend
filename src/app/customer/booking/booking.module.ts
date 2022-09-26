@@ -5,7 +5,7 @@ import { UpdatebookingComponent } from './updatebooking/updatebooking.component'
 import { ViewbookingComponent } from './viewbooking/viewbooking.component';
 import { CustomeruserModule } from '../customeruser/customeruser.module';
 import { DeletebookingComponent } from './deletebooking/deletebooking.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { DeletebookingComponent } from './deletebooking/deletebooking.component'
     DeletebookingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports:[
     AddbookingComponent,

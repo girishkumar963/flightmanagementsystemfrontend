@@ -1,1 +1,45 @@
-<div>Add Booking Works</div>
+<body>
+    <form (submit)="onFormSubmit()" [formGroup]="flightform">
+    <div class="row g-2" >
+
+    <div class="col-md">
+        <div class="form-floating">
+            <select class="form-select" id="floatingSelectGrid" formControlName="srcairport">
+                <option selected>Open this select menu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Pune">Pune</option>
+                <option value="Hydrabad">Hyderabad</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Mumbai">Mumbai</option>
+            </select>
+            <label for="floatingSelectGrid">Source Airport</label>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="form-floating">
+            <select class="form-select" id="floatingSelectGrid" formControlName="dstnairport">
+                <option selected>Open this select menu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Pune">Pune</option>
+                <option value="Hydrabad">Hyderabad</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Mumbai">Mumbai</option>
+            </select>
+            <label for="floatingSelectGrid">Destination Airport</label>
+        </div>
+    </div>
+</div>
+<br>
+<div class="form-floating col-md" style="width: 50%;">
+    <input type="date" class="form-control" id="floatingInput" placeholder="Date" required
+        formControlName="flightdate">
+    <label for="floatingInput">Date</label>
+</div>
+<br><br>
+<div class="col-md">
+<button type="submit" class="btn btn-primary btn-lg">Search Flights</button>
+</div>
+</form>
+</body>
