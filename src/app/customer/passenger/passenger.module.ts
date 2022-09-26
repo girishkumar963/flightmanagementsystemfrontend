@@ -10,6 +10,9 @@ import { AddpassengerComponent } from './addpassenger/addpassenger.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    AddpassengerComponent
   ]
 })
 export class PassengerModule { }

@@ -1,0 +1,53 @@
+<body class="text-center mt-5">
+    <h1>My Bookings</h1>
+    <br>
+    <br>
+    <table style="width: 100%;">
+        <thead>
+            <th>Sr. No.</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>View Complete Details</th>
+            <th>Update Booking Details</th>
+            <th>Cancel Booking Details</th>
+        </thead>
+        <tr *ngFor="let c of bookings;; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.scheduledFlight.schedule.srcAirport.airportLocation}}</td>
+            <td>{{c.scheduledFlight.schedule.dstnAirport.airportLocation}}</td>
+            <td>{{c.bookingDate}}</td>
+            <td>{{c.ticketCost}}</td>
+            <td>
+                <button class="btn btn-success" (click)="viewFullDetails()">View Details</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="updateDetails()">Update</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteDetails(c.bookingId)" data-bs-toggle="modal" data-bs-target="#submission">Cancel Booking</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<div class="modal fade" id="submission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                    {{message}}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

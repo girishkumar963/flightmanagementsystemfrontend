@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppService {
 
-    adminloggedIn = new BehaviorSubject<boolean>(false);
+    loggedIn = new BehaviorSubject<boolean>(false);
     customerloggedIn = new BehaviorSubject<boolean>(false);
     constructor() { }
 }

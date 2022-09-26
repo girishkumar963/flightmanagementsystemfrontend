@@ -55,9 +55,9 @@
             <a href="Javascript.void(0)" (click)="onLogOut()" routerLink="/">log out</a>
           </span>
           <span *ngIf="customerloggedIn" style="color:black">
-            Welcome
+            Welcome {{this.custName}}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="Javascript.void(0)" (click)="onLogOut()" routerLink="/">log out</a>
+            <button class="btn btn-danger" (click)="onLogOut()">Log Out</button>
           </span>
           &nbsp;&nbsp;&nbsp;
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -70,11 +70,8 @@
               <img src="../../../../assets/flight.png" alt="mdo" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="Javascript.void(0)" routerLink="/login">Customer
-                  Login</a></li>
-              <li><a class="dropdown-item" href="Javascript.void(0)" 
-                  routerLink="/customerhome/">Customer Home</a>
-              </li>
+              <li><a class="dropdown-item" *ngIf="!customerloggedIn" (click)="customerlogin()">Customer Login</a></li>
+              <li><a class="dropdown-item" *ngIf="customerloggedIn" (click)="customerhome()" >Customer Home</a></li>
               <li><a class="dropdown-item" href="Javascript.void(0)" routerLink="/admin">Employee Login</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li>
