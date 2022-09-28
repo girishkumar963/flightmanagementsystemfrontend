@@ -1,0 +1,71 @@
+<p>addscheduledflight works!</p>
+
+<body>
+    <form (submit)="onFormSubmit()" [formGroup]="scheduledflightform">
+        <div class="row g-2">
+
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" formControlName="scheduleflightId">
+                        <option selected>Open this select menu</option>
+                        <option value="101">101</option>
+                        <option value="102">102</option>
+                        <option value="103">103</option>
+                        <option value="104">104</option>
+                        <option value="105">105</option>
+                        <option value="106">106</option>
+                    </select>
+                    <label for="floatingSelectGrid">scheduleflightId</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" formControlName="avaliableseats">
+                        <option selected>Open this select menu</option>
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+                    <label for="floatingSelectGrid">avaliableseats</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" formControlName="ticketcost">
+                        <option selected>Open this select menu</option>
+                        <option value="3000">3000</option>
+                        <option value="4000">4000</option>
+                        <option value="5000">5000</option>
+                        <option value="6000">6000</option>
+                        <option value="7000">7000</option>
+                        <option value="8000">8000</option>
+                    </select>
+                    <label for="floatingSelectGrid">ticketcost</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelectGrid" formControlName="scheduleId">
+                        <option selected>Open this select menu</option>
+                        <option value="1011">1011</option>
+                        <option value="1012">1012</option>
+                        <option value="1013">1013</option>
+                        <option value="1014">1014</option>
+                        <option value="1015">1015</option>
+                        <option value="1016">1016</option>
+                    </select>
+                    <label for="floatingSelectGrid">scheduleId</label>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <br><br>
+        <div class="col-md">
+            <button type="submit" class="btn btn-primary btn-lg">add SchedueldFlights</button>
+        </div>
+    </form>
+</body>

@@ -10,27 +10,71 @@ import { BookingserviceService } from 'src/app/services/bookingservice.service';
 })
 export class ViewbookingComponent implements OnInit {
 
-  bid:number;
+  uid:number;
   bookings:Booking[];
   booking:Booking;
-  bookingId:number;
+  bookingid:number;
   message:string;
   status:boolean;
+  currentBooking:Booking;
+  bookingId?: number;
+  bookingDate?: string;
+  noOfPassengers?: number;
+  ticketCost?: number;
+  srcairportId?: number;
+  srcairportName?: string;
+  srcairportLocation?: string;
+  srcairportCode?: string;
+  dstnairportId?: number;
+  dstnairportName?: string;
+  dstnairportLocation?: string;
+  dstnairportCode?: string;
+  scheduleId?: number;
+  deptDateTime?: Date;
+  arrDateTime?: Date;
+  flightModel:string;
+  carriername:string;
+  seatCapacity:number;
+  flightid:number;
+
   constructor(private bookingService:BookingserviceService,private actRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-    this.actRoute.params.subscribe(params=>{
-      this.bid = params.bid;
-    
-    this.bookingService.getBookingByUserId(params.bid).subscribe(data=>{
-      this.bookings = data;
-    })
-    })
+    this.displayData();
   }
    
+  displayData(){
+    this.actRoute.params.subscribe(params => {
+      this.uid = params.uid;
+
+      this.bookingService.getBookingByUserId(params.uid).subscribe(data => {
+        this.bookings = data;
+      })
+    })
+  }
  
-  viewFullDetails=()=>{
-    
+  viewFullDetails=(bid:number)=>{
+    this.bookingService.getBookinByBookingId(bid).subscribe(data=>{
+      this.currentBooking=data;
+      this.bookingId = this.currentBooking.bookingId;
+      this.bookingDate = this.currentBooking.bookingDate;
+      this.noOfPassengers = this.currentBooking.noOfPassengers;
+      this.ticketCost = this.currentBooking.ticketCost;
+      this.arrDateTime = this.currentBooking.scheduledFlight.schedule.arrDateTime;
+      this.deptDateTime = this.currentBooking.scheduledFlight.schedule.deptDateTime;
+      this.dstnairportCode = this.currentBooking.scheduledFlight.schedule.dstnAirport.airportCode;
+      this.dstnairportLocation = this.currentBooking.scheduledFlight.schedule.dstnAirport.airportLocation;
+      this.dstnairportName = this.currentBooking.scheduledFlight.schedule.dstnAirport.airportName;
+      this.srcairportCode = this.currentBooking.scheduledFlight.schedule.srcAirport.airportCode;
+      this.srcairportLocation = this.currentBooking.scheduledFlight.schedule.srcAirport.airportLocation;
+      this.srcairportName = this.currentBooking.scheduledFlight.schedule.srcAirport.airportName;
+      this.carriername = this.currentBooking.scheduledFlight.flight.carrierName;
+      this.seatCapacity = this.currentBooking.scheduledFlight.flight.seatCapacity;
+      this.flightModel = this.currentBooking.scheduledFlight.flight.flightModel;
+      this.flightid = this.currentBooking.scheduledFlight.flight.flightNo;
+    })
+
+
   }
 
   updateDetails=()=>{
@@ -40,16 +84,16 @@ export class ViewbookingComponent implements OnInit {
   deleteDetails(bookingId:number){
     console.log(bookingId);
     this.bookingService.deleteBooking(bookingId).subscribe(data=>{
-      this.message = "Booking Cancelled successfully"
-      this.actRoute.params.subscribe(params => {
-        this.bid = params.bid;
+      this.displayData();
+      // this.actRoute.params.subscribe(params => {
+      //   this.uid = params.uid;
 
-        this.bookingService.getBookingByUserId(params.bid).subscribe(data => {
-          this.bookings = data;
-        })
-      })
+      //   this.bookingService.getBookingByUserId(params.bid).subscribe(data => {
+      //     this.bookings = data;
+      //   })
+      // })
     })
-    //this.router.navigateByUrl('/deletebooking/'+bookingId);
+
   }
 
 }

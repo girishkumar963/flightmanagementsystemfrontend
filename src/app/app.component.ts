@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from './app.service';
 import { User } from './models/user.model';
 import { UserserviceService } from './services/userservice.service';
@@ -19,17 +19,19 @@ export class AppComponent {
   loginArray: User[];
   custId: number;
   custName:string;
-  constructor(private appService: AppService, private userService: UserserviceService,private router:Router) { }
+  userEmail:string;
+  constructor(private appService: AppService, private userService: UserserviceService,private router:Router,private actRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => {
       this.userArray = data;
       this.loginArray = this.userArray;
     })
-    let token = localStorage.getItem('specialId');
-    token = atob(token);
+    let token = localStorage.getItem('token');
+    // token = atob(token);
     this.userId = token.split(':')[0];
     this.password = token.split(':')[1];
+
     this.appService.loggedIn.subscribe(data => {
 
       let status = localStorage.getItem('isLoggedIn');
@@ -60,8 +62,23 @@ export class AppComponent {
     this.router.navigateByUrl('/customerlogin');
   }
   customerhome=()=>{
-    
+    this.userService.getUsers().subscribe(data => {
+      this.userArray = data;
+      this.loginArray = this.userArray;
+    })
+    let token = localStorage.getItem('token');
+    // token = atob(token);
+    this.userEmail = token.split(':')[0];
+    this.password = token.split(':')[1];
+    console.log(this.userId+this.password)
+    this.custId = this.userArray.find(e => e.userEmail === this.userEmail && e.userPassword === this.password).userId;
     this.router.navigateByUrl('/customerhome/'+this.custId)
+  }
+  adminlogin(){
+    this.router.navigateByUrl('/adminlogin')
+  }
+  adminhome(){
+    this.router.navigateByUrl('/adminhome')
   }
   onLogOut() {
     localStorage.removeItem('token');

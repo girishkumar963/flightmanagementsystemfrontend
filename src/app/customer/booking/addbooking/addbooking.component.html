@@ -1,4 +1,5 @@
 <body>
+    <div class="searchflights">
     <form (submit)="onFormSubmit()" [formGroup]="flightform">
     <div class="row g-2" >
 
@@ -7,11 +8,12 @@
             <select class="form-select" id="floatingSelectGrid" formControlName="srcairport">
                 <option selected>Open this select menu</option>
                 <option value="Delhi">Delhi</option>
-                <option value="Banglore">Banglore</option>
+                <option value="Bengaluru">Bengaluru</option>
                 <option value="Pune">Pune</option>
                 <option value="Hydrabad">Hyderabad</option>
                 <option value="Kolkata">Kolkata</option>
                 <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
             </select>
             <label for="floatingSelectGrid">Source Airport</label>
         </div>
@@ -21,25 +23,125 @@
             <select class="form-select" id="floatingSelectGrid" formControlName="dstnairport">
                 <option selected>Open this select menu</option>
                 <option value="Delhi">Delhi</option>
-                <option value="Banglore">Banglore</option>
+                <option value="Bengaluru">Bengaluru</option>
                 <option value="Pune">Pune</option>
-                <option value="Hydrabad">Hyderabad</option>
+                <option value="Hydrabad">Hydrabad</option>
                 <option value="Kolkata">Kolkata</option>
                 <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
             </select>
             <label for="floatingSelectGrid">Destination Airport</label>
         </div>
     </div>
 </div>
 <br>
-<div class="form-floating col-md" style="width: 50%;">
+<!-- <div class="form-floating col-md" style="width: 50%;">
     <input type="date" class="form-control" id="floatingInput" placeholder="Date" required
         formControlName="flightdate">
     <label for="floatingInput">Date</label>
-</div>
-<br><br>
+</div> -->
+<br>
 <div class="col-md">
 <button type="submit" class="btn btn-primary btn-lg">Search Flights</button>
 </div>
 </form>
+</div>
+
+<form [formGroup]="bookingform">
+<div *ngIf="status" class="text-center" width="70%" >
+    <h1>Available Flights</h1>
+    <br>
+    <br>
+
+    <table class="table" style="width: 70%;margin-left: 15%;" >
+        <thead class="table-dark">
+            <tr>
+            <th>Sr. No.</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>No Of Passengers</th>
+            <th>Available Seats</th>
+            <th>View Details</th>
+            <th>Book Flight</th>
+            </tr>
+        </thead>
+        <tbody class="table-info" style="padding: 40px;">
+        <tr *ngFor="let c of updatedflightsArray;; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.schedule.srcAirport.airportLocation}}</td>
+            <td>{{c.schedule.dstnAirport.airportLocation}}</td>
+            <td>{{c.schedule.deptDateTime}}</td>
+            <td>{{c.ticketCost}}</td>
+            
+                <!-- <div class="form-floating"> -->
+                    <select class="form-select" formControlName="noOfPassengers" id="floatingSelectGrid">
+                        <option [ngValue]="null">Select Here</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                    </select>
+                    <!-- <label for="floatingSelectGrid">    </label> -->
+                <!-- </div> -->
+            
+            <td>{{c.availableSeats}}</td>
+            <td>
+                <button class="btn btn-info" (click)="viewFullDetails(c.scheduleFlightId)" data-bs-toggle="modal" data-bs-target="#details">View Details</button>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-success" (click)="bookflight(c.scheduleFlightId)">Book Now</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+    </div>
+    </form>
 </body>
+
+
+<div class="modal fade" id="details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                    Scheduled Flight ID : {{this.sfid}} <br><br>
+                    Flight Details : <br>
+                    Flight No : {{this.flightNo}} <br>
+                    Carrier Name : {{this.carrierName}} <br>
+                    Seat Capacity : {{this.seatCapacity}} <br>
+                    Flight Model : {{this.flightModel}} <br>
+                    <br>
+
+                    Schedule Details : <br>
+                    Departure Date And Time : {{this.deptDateTime}} <br>
+                    Arrival Date And Time : {{this.arrDateTime}} <br>
+                    <br>
+    
+                    Source Airport Code : {{this.srcairportCode}} <br>
+                    Source Airport Location : {{this.srcairportLocation}} <br>
+                    Source Airport Name : {{this.srcairportName}} 
+                    <br>
+                    <br>
+                    Destination Airport Code : {{this.dstnairportCode}} <br>
+                    Destination Airport Location : {{this.dstnairportLocation}} <br>
+                    Destination Airport Name : {{this.dstnairportName}}
+                    
+                    <br><br>
+                    Ticket Cost/Person : {{this.ticketCost}}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

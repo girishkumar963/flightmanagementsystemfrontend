@@ -6,9 +6,9 @@
             <h1 class="h3 mb-3 fw-normal">Customer SignIn</h1>
 
             <div class="form-floating" style="width: 25%; margin-left: 37%;">
-                <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com" required
-                    formControlName="customerId">
-                <label for="floatingInput">Customer ID</label>
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required
+                    formControlName="customerEmail">
+                <label for="floatingInput">Customer Email</label>
             </div>
             <br>
             <div class="form-floating" style="width: 25%; margin-left:37%;">
@@ -21,7 +21,7 @@
 
         </form>
         <br>
-        <a (click)="register()" style="text-decoration: none;">New User? Click Here to Register..</a>
+        <a (click)="register()" style="text-decoration: none; color: blue;">New User? Click Here to Register..</a>
         <p class="mt-5 mb-3 text-muted">© Company 2022</p>
     </main>
 </body>

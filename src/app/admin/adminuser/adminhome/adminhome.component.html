@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class="fluid-container">
+    <div>
+        <br>
+        <div class="dropdown" style="margin-right: 100px;">
+            <a href="#" class="link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="assets/Menu.png" alt="mdo" width="50" height="50" class="rounded-circle"
+                    style="margin-left: 30px;">
+            </a>
+            <ul class="dropdown-menu text-small" style="font-size:20px ;" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" routerLink="adduser">Register User</a></li>
+                <li><a class="dropdown-item" routerLink="/">Add Flight</a></li>
+                <li><a class="dropdown-item" routerLink="/">List Flights</a></li>
+                <li><a class="dropdown-item" routerLink="/">Search Flight</a></li>
+                <li><a class="dropdown-item" routerLink="/">Schedule a Flight</a></li>
+                <li><a class="dropdown-item" routerLink="/">List Scheduled Flights</a></li>
+                <li><a class="dropdown-item" routerLink="/">Search Scheduled Flight</a></li>
+                <li><a class="dropdown-item" routerLink="airportlist">List Airports</a></li>
+                <li><a class="dropdown-item" routerLink="viewairport">Search Airport</a></li>
+            </ul>
+        </div>
+        <br />
+        <hr class="hr1" />
+        <br>
+        <br>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/Spicejet.png" class="d-block w-75" alt="..."
+                        style="height: 250px; display: block; margin-left: auto; margin-right: auto;">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/Boeing.png" class="d-block w-75" alt="..."
+                        style="height: 250px; display: block; margin-left: auto; margin-right: auto;">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/AirIndia.png" class="d-block w-75" alt="..."
+                        style="height: 250px; display: block; margin-left: auto; margin-right: auto;">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <br />
+    <br />
+    <hr class="hr1" />
+    <br />
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</body>
+
+</html>

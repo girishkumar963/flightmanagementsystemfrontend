@@ -11,10 +11,19 @@ import { CommonModule } from '@angular/common';
 import { SignupComponent } from './signup/signup.component';
 import { FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { AdminuserModule } from './admin/adminuser/adminuser.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AirportModule } from './admin/airport/airport.module';
+import { ScheduledflightModule } from './admin/scheduledflight/scheduledflight.module';
+import { FlightModule } from './admin/flight/flight.module';
+import { ScheduleModule } from './admin/schedule/schedule.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -25,9 +34,14 @@ import { FormsModule } from '@angular/forms';
     PassengerModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AdminuserModule,
+    AirportModule,
+    ScheduledflightModule,
+    ScheduleModule,
+    FlightModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

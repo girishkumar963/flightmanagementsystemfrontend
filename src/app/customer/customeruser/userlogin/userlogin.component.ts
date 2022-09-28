@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { User } from 'src/app/models/user.model';
 import { UserserviceService } from 'src/app/services/userservice.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-userlogin',
@@ -15,20 +13,19 @@ import { FormsModule } from '@angular/forms';
 export class UserloginComponent implements OnInit {
 
   loginForm: FormGroup;
-  // user:any;
   public users: User[];
   errorMsg: String;
 
   constructor(private router: Router, private userservice: UserserviceService, private appService: AppService) {
-    
+    this.loginForm = new FormGroup(
+      {
+        customerEmail: new FormControl('',[Validators.required]),
+        password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      }
+    )
   }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-        customerId: new FormControl('Enter Valid Field', [Validators.required]),
-        password: new FormControl('Enter Valid Field', [Validators.required, Validators.minLength(5)])
-    })
-
     this.userservice.getUsers().subscribe((data) => {
       this.users = data;
     })
@@ -39,16 +36,16 @@ export class UserloginComponent implements OnInit {
   }
 
   onFormSubmit = () => {
-    let customerId = this.loginForm.value.customerId;
+    let customerEmail = this.loginForm.value.customerEmail;
     let password = this.loginForm.value.password;
 
-    let myprofile = this.users.find(a => (a.userId == customerId && a.userPassword == password && a.userType == "customer" || a.userType == "CUSTOMER"))
+    let myprofile = this.users.find(a => (a.userEmail == customerEmail && a.userPassword == password && a.userType == "customer" || a.userType == "CUSTOMER"))
     if (myprofile) {
       localStorage.setItem("isCustomerLoggedIn", "true");
-      let token = (customerId + ':' + password);
+      let token = (customerEmail + ':' + password);
       localStorage.setItem("token", token);
       this.appService.customerloggedIn.next(true);
-      this.router.navigateByUrl('customerhome/'+myprofile.userId)
+      this.router.navigateByUrl('customerhome/' + myprofile.userId)
     }
     else {
       this.errorMsg = 'Invalid Credentials';

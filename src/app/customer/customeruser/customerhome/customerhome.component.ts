@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-customerhome',
   templateUrl: './customerhome.component.html',
@@ -7,14 +7,21 @@ import { Router } from '@angular/router';
 })
 export class CustomerhomeComponent implements OnInit {
 
-  bid:number;
-  constructor(private router:Router) { }
+  uid:number;
+  constructor(private router:Router,private actRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.bid = 801
+    this.actRoute.params.subscribe(params=>{
+      this.uid=params.uid;
+      
+    })
   }
   addbooking=()=>{
-    this.router.navigateByUrl('/addbooking')
+    this.actRoute.params.subscribe(params => {
+      this.uid = params.uid;
+      this.router.navigateByUrl('/addbooking/' + this.uid);
+    })
+    
   }
 
   mydetails=()=>{
@@ -22,7 +29,10 @@ export class CustomerhomeComponent implements OnInit {
   }
 
   viewbooking = () => {
-    this.router.navigateByUrl('/viewbooking/'+this.bid);
+    this.actRoute.params.subscribe(params => {
+      this.uid = params.uid;
+      this.router.navigateByUrl('/viewbooking/' + this.uid);
+    })
   }
   updatebooking = () => {
     this.router.navigateByUrl('/updatebooking')

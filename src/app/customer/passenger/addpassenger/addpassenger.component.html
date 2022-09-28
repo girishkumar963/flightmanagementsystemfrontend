@@ -1,1 +1,72 @@
-<p>addpassenger works!</p>
+<section class="h-100 h-custom" style="background-color: #fdfffefb;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                    <img src="../../../../assets/passenger.png" class="w-100"
+                        style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Passenger Details</h3>
+
+                        <form [formGroup]="addPassengerForm" (submit)="onSubmit()">
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="pnrNumber"
+                                    class="form-control" name="pnrNumber" />
+                                <label class="form-label" for="form3Example1q">PNR</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example1q" formControlName="passengerName"
+                                    class="form-control" name="passengerName" />
+                                <label class="form-label" for="form3Example1q">Name</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="passengerAge"
+                                    class="form-control" name="passengerAge" />
+                                <label class="form-label" for="form3Example1q">Age</label>
+                            </div>
+
+                            <div>
+                                <label>Gender</label><br />
+                                <input type="radio" formControlName="gender" class="form-check-input" name="gender"
+                                    value="male"> Male<br>
+                                <input type="radio" formControlName="gender" class="form-check-input" name="gender"
+                                    value="female"> Female<br>
+                                <input type="radio" formControlName="gender" class="form-check-input" name="gender"
+                                    value="other"> Other<br>
+                            </div>
+                            <br>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="passengerUIN"
+                                    class="form-control" name="passengerUIN" />
+                                <label class="form-label" for="form3Example1q">UIN</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="luggage" class="form-control"
+                                    name="luggage" />
+                                <label class="form-label" for="form3Example1q">Luggage</label>
+                            </div>
+
+
+
+
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit"
+                                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Submit to
+                                    Add</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

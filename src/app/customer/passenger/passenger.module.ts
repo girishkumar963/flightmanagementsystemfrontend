@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddpassengerComponent } from './addpassenger/addpassenger.component';
+import { addpassengerComponent } from './addpassenger/addpassenger.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdatepassengerComponent } from './updatepassenger/updatepassenger.component';
+import { ViewpassengerComponent } from './viewpassenger/viewpassenger.component';
+import { DeletepassengerComponent } from './deletepassenger/deletepassenger.component';
 
 
 
 @NgModule({
   declarations: [
-    AddpassengerComponent
+    addpassengerComponent,
+    UpdatepassengerComponent,
+    ViewpassengerComponent,
+    DeletepassengerComponent
   ],
   imports: [
-    CommonModule
-  ],
-  exports:[
-    AddpassengerComponent
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class PassengerModule { }

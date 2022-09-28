@@ -1,0 +1,6 @@
+.hr1 {
+    border: 0;
+    height: 3px;
+    width: auto;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(9, 84, 132), rgba(0, 0, 0, 0));
+}

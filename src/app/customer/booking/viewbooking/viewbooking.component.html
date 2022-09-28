@@ -1,9 +1,10 @@
-<body class="text-center mt-5">
+<body class="text-center mt-5" style="margin:15%">
     <h1>My Bookings</h1>
     <br>
     <br>
-    <table style="width: 100%;">
-        <thead>
+    <table class="table" style="text-align:center ;">
+        <thead class="table-dark">
+            <tr>
             <th>Sr. No.</th>
             <th>Source</th>
             <th>Destination</th>
@@ -12,7 +13,10 @@
             <th>View Complete Details</th>
             <th>Update Booking Details</th>
             <th>Cancel Booking Details</th>
+            </tr>
         </thead>
+        
+        <tbody class ="table-info" style="font-size: 18px;">
         <tr *ngFor="let c of bookings;; index as i">
             <td>{{i+1}}</td>
             <td>{{c.scheduledFlight.schedule.srcAirport.airportLocation}}</td>
@@ -20,48 +24,54 @@
             <td>{{c.bookingDate}}</td>
             <td>{{c.ticketCost}}</td>
             <td>
-                <button class="btn btn-success" (click)="viewFullDetails()">View Details</button>
+                <button class="btn btn-success" (click)="viewFullDetails(c.bookingId)" data-bs-toggle="modal" data-bs-target="#submission">View Details</button>
             </td>
             <td>
                 <button class="btn btn-primary" (click)="updateDetails()">Update</button>
             </td>
             <td>
-                <button class="btn btn-danger" (click)="deleteDetails(c.bookingId)" data-bs-toggle="modal" data-bs-target="#submission">Cancel Booking</button>
+                <button class="btn btn-danger" (click)="deleteDetails(c.bookingId)" >Cancel Booking</button>
             </td>
+            
         </tr>
+        </tbody>
     </table>
 </body>
 <div class="modal fade" id="submission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-
+                <h5 class="modal-title" id="exampleModalLabel" style="font-size: x-large;">My Booking Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-info" role="alert">
-                    {{message}}
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="submission" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info" role="alert">
-                    {{message}}
+                    
+                    Booking Id : {{this.bookingId}} <br>
+                    Booking Date : {{this.bookingDate}} <br>
+                    No. Of Passengers : {{this.noOfPassengers}} <br>
+                    Ticket Cost : {{this.ticketCost}}
+                    <br>
+                    <br>
+                    Departure Date And Time : {{this.deptDateTime}} <br>
+                    Arrival Date And Time : {{this.arrDateTime}} <br>
+                    <br>
+                    <br>
+                    Source Airport Code : {{this.srcairportCode}} <br>
+                    Source Airport Location : {{this.srcairportLocation}} <br>
+                    Source Airport Name : {{this.srcairportName}} <br>
+                    <br>
+                    <br>
+                    Destination Airport Code : {{this.dstnairportCode}} <br>
+                    Destination Airport Location : {{this.dstnairportLocation}} <br>
+                    Destination Airport Name : {{this.dstnairportName}} <br>
+                    <br>
+                    <br>
+                    Flight Details: <br>
+                    Flight Id : {{this.flightid}} <br>
+                    Carrier Name : {{this.carriername}} <br>
+                    Flight Model : {{this.flightModel}} <br>
+                    Seat Capacity : {{this.seatCapacity}} <br>
                 </div>
 
             </div>

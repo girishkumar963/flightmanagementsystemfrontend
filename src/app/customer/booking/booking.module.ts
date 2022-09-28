@@ -6,7 +6,7 @@ import { ViewbookingComponent } from './viewbooking/viewbooking.component';
 import { CustomeruserModule } from '../customeruser/customeruser.module';
 import { DeletebookingComponent } from './deletebooking/deletebooking.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AddbookingComponent,
@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule
   ],
+  providers:[DatePipe],
   exports:[
     AddbookingComponent,
     UpdatebookingComponent,

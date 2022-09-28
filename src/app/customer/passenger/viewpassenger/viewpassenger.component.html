@@ -1,0 +1,38 @@
+<body class="text-center mt-5">
+    <h1>Passenger Details</h1>
+    <br>
+    <br>
+    <table style="width: 100%;">
+        <thead>
+            <th>Sr. No.</th>
+            <th>PNR</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>UIN</th>
+            <th>Luggage</th>
+            <th>View Complete Details</th>
+            <th>Update Passenger Details</th>
+            <th>Delete Passenger Details</th>
+        </thead>
+        <tr *ngFor="let c of passenger;; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.passenger.pnrNumber}}</td>
+            <td>{{c.passenger.passengerName}}</td>
+            <td>{{c.passenger.passengerAge}}</td>
+            <td>{{c.passenger.gender}}</td>
+            <td>{{c.passenger.passengerUIN}}</td>
+            <td>{{c.passenger.luggage}}</td>
+            <td>
+                <button class="btn btn-success" (click)="viewFullDetails()">View Details</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="updateDetails()">Update</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deletepassenger(c.id)" data-bs-toggle="modal"
+                    data-bs-target="#submission">Delete Passenger</button>
+            </td>
+        </tr>
+    </table>
+</body>

@@ -1,0 +1,52 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-6">
+            <h5>Search Airport By Id</h5>
+            <form class="form-inline" (submit)="search()">
+                <div class="form-group">
+                    <input [(ngModel)]="airportId" name="id" size="40" type="search" placeholder="Enter Airport Id"
+                        class="form-control">
+                </div>
+                <div>
+                    <input type="submit" value="Search" class="btn btn-secondary btn-sm">
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <h5>Search Airport By Code</h5>
+            <form class="form-inline" (submit)="searchbycode()">
+                <div class="form-group">
+                    <input [(ngModel)]="airportCode" name="code" size="40" type="search"
+                        placeholder="Enter Airport Code" class="form-control">
+                </div>
+                <div>
+                    <input type="submit" value="Search" class="btn btn-secondary btn-sm">
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped"
+                style="text-align: center; border-radius: 5px; border-width: 3px; border-color: black;">
+                <thead style="font-size: 20px; background-color: darkblue; color: white;">
+                    <tr>
+                        <th>AirportCode</th>
+                        <th>AirportName</th>
+                        <th>AirportLocation</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size:20px ; font-weight: bold;">
+                    <td>{{airport.airportCode}}</td>
+                    <td>{{airport.airportName}}</td>
+                    <td>{{airport.airportLocation}}</td>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

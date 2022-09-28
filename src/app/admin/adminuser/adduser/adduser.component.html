@@ -1,0 +1,89 @@
+<body>
+    <div>
+        <br>
+        <h1><img src="assets/image2.jpg"><b> Register</b></h1><br><br>
+        <form #userRegister="ngForm" (ngSubmit)="register(userRegister.value)">
+            <table class="center">
+                <tr>
+                    <td>
+                        <label for="username">Full Name<label style="color: red;">* </label>:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="username" required #name="ngModel" placeholder="Enter your FullName"
+                            [(ngModel)]="user.userName"><br>
+                        <span *ngIf="name.invalid && name.touched" class="errormsg">Required Field</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="userphone">Phone Number<label style="color: red;">* </label> :</label>
+                    </td>
+                    <td>
+                        <input type="number" name="userphone" required min="1000000000" max="9999999999"
+                            #phone="ngModel" placeholder="Enter your phone number" [(ngModel)]="user.userPhone"><br>
+                        <span *ngIf="phone.invalid && phone.touched" class="errormsg">Required Field</span>
+                        <span *ngIf="phone.errors?.['min']" class="errormsg">Phone number must be exact 10 digits</span>
+                        <span *ngIf="phone.errors?.['max']" class="errormsg">Phone number must be exact 10 digits</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="useremail">Email Id<label style="color: red;">* </label>:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="useremail" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel"
+                            placeholder="Enter your email id" [(ngModel)]="user.userEmail"><br>
+                        <span *ngIf="email.invalid && email.touched" class="errormsg">Required Field</span>
+                        <span *ngIf="email.invalid && email.errors?.['pattern']" class="errormsg">Enter Correct
+                            Email.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="type">User Type<label style="color: red;">* </label>:</label>
+                    </td>
+                    <td>
+                        <select name="type" required #usertype="ngModel" placeholder="Select User Type"
+                            [(ngModel)]="user.userType">
+                            <option value="admin">Adminstrator</option>
+                            <option value="customer">Customer</option>
+                        </select><br>
+                        <span *ngIf="usertype.invalid && usertype.touched" class="errormsg">Required Field</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="pass">Password<label style="color: red;">*</label> :</label>
+                    </td>
+                    <td>
+                        <input type="password" name="pass" placeholder="Enter your password" required
+                            #password="ngModel" required minlength="5" maxlength="10"
+                            [(ngModel)]="user.userPassword"><br>
+                        <span *ngIf="password.invalid && password.touched" class="errormsg">Required Field</span>
+                        <span class="errormsg" *ngIf="password.errors?.['minlength']">Password must be minimum of 5
+                            characters</span>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cpass">Confirm Password<label style="color: red;">*</label> :</label>
+                    </td>
+                    <td>
+                        <input type="password" name="cpass" placeholder="Re-Enter password" required
+                            appConfirmEqualValidator="pass" #confirmpassword="ngModel" required minlength="5"
+                            maxlength="10" [ngModel]="uconfirmpassword"><br>
+                        <span *ngIf="confirmpassword.invalid && confirmpassword.touched" class="errormsg">Required
+                            Field</span>
+                        <span class="errormsg"
+                            *ngIf="confirmpassword.touched && confirmpassword.errors?.notEqual && !confirmpassword.errors?.['required']">Confirm
+                            Password and Password must match</span>
+                        <br>
+                    </td>
+                </tr>
+            </table><br><br>
+            <button class="btn btn secondary" [disabled]="userRegister.invalid">Register</button><br>
+        </form>
+    </div>
+</body>

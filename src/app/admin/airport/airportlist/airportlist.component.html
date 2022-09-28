@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="panel-heading">
+        <h2>List of Airports</h2>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped" style="border-color: black; border:20px 20px 20px 20px; text-align: center;">
+            <thead style="font-size: 20px;">
+                <tr>
+                    <th>AirportCode</th>
+                    <th>AirportName</th>
+                    <th>AirportLocation</th>
+                </tr>
+            </thead>
+            <tbody style="font-size:20px ;">
+                <tr *ngFor="let airport of airports">
+                    <td>{{airport.airportCode}}</td>
+                    <td>{{airport.airportName}}</td>
+                    <td>{{airport.airportLocation}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
