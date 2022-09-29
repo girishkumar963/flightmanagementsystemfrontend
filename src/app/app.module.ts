@@ -18,7 +18,6 @@ import { AirportModule } from './admin/airport/airport.module';
 import { ScheduledflightModule } from './admin/scheduledflight/scheduledflight.module';
 import { FlightModule } from './admin/flight/flight.module';
 import { ScheduleModule } from './admin/schedule/schedule.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +38,6 @@ import { ScheduleModule } from './admin/schedule/schedule.module';
     AirportModule,
     ScheduledflightModule,
     ScheduleModule,
-    FlightModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -1,1 +1,35 @@
-<p>viewscheduledflight works!</p>
+<body class="text-center mt-5">
+    <h1>ScheduledFlight Details</h1>
+    <br>
+    <br>
+    <table style="width: 100%;">
+        <thead>
+            <th>Sr. No.</th>
+            <th>ScheduledFlightID</th>
+            <th>avaliableseats</th>
+            <th>ticketcost</th>
+            <th>schedule</th>
+
+            <th>View Complete Details</th>
+            <th>Update ScheduledFlight Details</th>
+            <th>Delete ScheduledFlight Details</th>
+        </thead>
+        <tr *ngFor="let c of scheduledflight;; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.scheduledflight.scheduledFlightId}}</td>
+            <td>{{c.scheduledflight.avaliableSeats}}</td>
+            <td>{{c.scheduledflight.ticketcost}}</td>
+            <td>{{c.scheduledflight.schedule}}</td>
+            <td>
+                <button class="btn btn-success" (click)="viewFullDetails()">View Details</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="updateDetails()">Update</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deletescheduleFlight(c.id)" data-bs-toggle="modal"
+                    data-bs-target="#submission">Delete ScheduledFlight</button>
+            </td>
+        </tr>
+    </table>
+</body>

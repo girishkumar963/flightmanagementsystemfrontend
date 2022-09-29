@@ -22,6 +22,7 @@ import { UpdatescheduledflightComponent } from './admin/scheduledflight/updatesc
 import { DeletescheduledflightComponent } from './admin/scheduledflight/deletescheduledflight/deletescheduledflight.component';
 import { ViewairportComponent } from './admin/airport/viewairport/viewairport.component';
 import { AirportlistComponent } from './admin/airport/airportlist/airportlist.component';
+import { FlightComponent } from './admin/flight/flight/flight.component';
 const routes: Routes = [
   {path:'',component:DashboardComponent},
   {path:'customerhome/:uid',component:CustomerhomeComponent},
@@ -37,11 +38,12 @@ const routes: Routes = [
     children:[
       {path:'adduser',component:AdduserComponent},
       { path: 'addsf', component: AddscheduledflightComponent },
-      { path: 'viewAllsf', component: ViewscheduledflightComponent },
+      { path: 'viewallsf', component: ViewscheduledflightComponent },
       { path: 'modifysf', component: UpdatescheduledflightComponent },
       { path: 'deletesf', component: DeletescheduledflightComponent },
       { path: 'viewairport',component:ViewairportComponent},
-      { path: 'airportlist',component:AirportlistComponent}
+      { path: 'airportlist',component:AirportlistComponent},
+      { path:'flights',component:FlightComponent}
   ]},
   {path:'addpassenger/:bid',component:addpassengerComponent},
   {path:'updatepassenger',component:UpdatepassengerComponent},

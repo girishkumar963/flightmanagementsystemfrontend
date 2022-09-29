@@ -77,8 +77,8 @@ export class ViewbookingComponent implements OnInit {
 
   }
 
-  updateDetails=()=>{
-    this.router.navigateByUrl('/updatebooking')
+  updateDetails=(bid:number)=>{
+    this.router.navigateByUrl('/addpassenger/'+bid);
   }
 
   deleteDetails(bookingId:number){

@@ -11,16 +11,41 @@ import { ScheduledflightserviceService } from 'src/app/services/scheduledflights
 })
 export class ViewscheduledflightComponent implements OnInit {
 
+  scheduledFlightId: number;
+  scheduledFlights: Observable<ScheduledFlight[]>;
+  scheduledflight: ScheduledFlight;
 
-  scheduleFlights: Observable<ScheduledFlight[]>;
 
-  constructor() { }
+
+  constructor(private scheduledflightsevice: ScheduledflightserviceService, private router: Router) { }
 
   ngOnInit(): void {
 
+    this.reloadData();
+    this.scheduledflightsevice.getScheduledFlightById(this.scheduledFlightId).subscribe(data => {
+      this.scheduledflight = data;
+    })
+
 
   }
+  reloadData() {
+    this.scheduledFlights = this.scheduledflightsevice.getAllScheduledFlights();
+  }
 
+  viewFullDetails = () => {
+
+  }
+  updateDetails = () => {
+    this.router.navigateByUrl('/updatescheduledflights')
+  }
+  deletescheduledflight(scheduledFlightId: number) {
+    this.scheduledflightsevice.deleteScheduledflights(scheduledFlightId).subscribe(data => {
+      console.log(data);
+      this.reloadData();
+    },
+      error => console.log(error)
+    );
+  }
 
 }
 

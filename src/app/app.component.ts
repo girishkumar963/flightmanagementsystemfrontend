@@ -27,13 +27,15 @@ export class AppComponent {
       this.userArray = data;
       this.loginArray = this.userArray;
     })
+
     let token = localStorage.getItem('token');
     // token = atob(token);
+    if(token!=null){
     this.userId = token.split(':')[0];
     this.password = token.split(':')[1];
-
+    }
     this.appService.loggedIn.subscribe(data => {
-
+    
       let status = localStorage.getItem('isLoggedIn');
       if (status) {
         this.loggedIn = true;
@@ -62,17 +64,23 @@ export class AppComponent {
     this.router.navigateByUrl('/customerlogin');
   }
   customerhome=()=>{
-    this.userService.getUsers().subscribe(data => {
-      this.userArray = data;
-      this.loginArray = this.userArray;
-    })
     let token = localStorage.getItem('token');
-    // token = atob(token);
-    this.userEmail = token.split(':')[0];
-    this.password = token.split(':')[1];
-    console.log(this.userId+this.password)
-    this.custId = this.userArray.find(e => e.userEmail === this.userEmail && e.userPassword === this.password).userId;
+    if (token != null) {
+      this.userEmail = token.split(':')[0];
+      this.password = token.split(':')[1];
+      this.userService.getUsers().subscribe(data => {
+        console.log(this.userEmail+this.password)
+        this.userArray = data;
+        this.loginArray = this.userArray;
+        this.custId = this.userArray.find(e => e.userEmail === this.userEmail && e.userPassword === this.password).userId;
+        console.log(this.custId)
+        this.router.navigateByUrl('/customerhome/' + this.custId)
+      })
+    }
+    else{
+    console.log(this.custId)
     this.router.navigateByUrl('/customerhome/'+this.custId)
+    }
   }
   adminlogin(){
     this.router.navigateByUrl('/adminlogin')

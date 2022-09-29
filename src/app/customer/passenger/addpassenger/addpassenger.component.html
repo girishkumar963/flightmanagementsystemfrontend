@@ -1,3 +1,69 @@
+<body class="text-center mt-5" style="margin-left: 10%;">
+    <form [formGroup]="addPassengerForm" (submit)="onSubmit()">
+    <h1>Passenger Details</h1>
+    <br>
+    <br>
+    <table style="width: 80%;">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>PNR</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>UIN</th>
+                <th>Luggage</th>
+                <th>Add Passenger</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        <tr *ngFor="let i of arr(this.noOfPassenger);;index as c">
+            
+            <td>{{c+1}}</td>
+                    <td>
+                        <input type="number" id="pnrNumber" formControlName="pnrNumber" class="form-control"
+                            name="pnrNumber"/>
+                    </td>
+                    <td>
+                        <input type="text" id="passengerName" formControlName="passengerName" class="form-control"
+                            name="passengerName" />
+                    </td>
+                    <td>
+                    
+                        <input type="number" id="passengerAge" formControlName="passengerAge" class="form-control"
+                            name="passengerAge" />
+                    </td>
+                    <td>
+                        <select class="form-select" formControlName="gender" id="floatingSelectGrid">
+                            <option [ngValue]="null">Select Here</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" id="passengerUIN" formControlName="passengerUIN" class="form-control"
+                            name="passengerUIN" />
+                    </td>
+                    <td>
+                    
+                        <input type="number" id="luggage" formControlName="luggage" class="form-control"
+                            name="luggage" />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">Add Passenger</button>
+                    </td>
+            </tr>
+        
+        </tbody>
+    </table>
+    </form>
+</body>
+
+
+
+
+<!--
 <section class="h-100 h-custom" style="background-color: #fdfffefb;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -70,3 +136,4 @@
         </div>
     </div>
 </section>
+-->

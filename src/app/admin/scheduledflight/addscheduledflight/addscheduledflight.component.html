@@ -1,71 +1,54 @@
-<p>addscheduledflight works!</p>
+<section class="h-100 h-custom" style="background-color: #fdfffefb;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                    <img src="../../../../assets/passenger.png" class="w-100"
+                        style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">ScheduldeFlight Details</h3>
 
-<body>
-    <form (submit)="onFormSubmit()" [formGroup]="scheduledflightform">
-        <div class="row g-2">
+                        <form [formGroup]="addscheduledflightform" (submit)="onSubmit()">
 
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" formControlName="scheduleflightId">
-                        <option selected>Open this select menu</option>
-                        <option value="101">101</option>
-                        <option value="102">102</option>
-                        <option value="103">103</option>
-                        <option value="104">104</option>
-                        <option value="105">105</option>
-                        <option value="106">106</option>
-                    </select>
-                    <label for="floatingSelectGrid">scheduleflightId</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" formControlName="avaliableseats">
-                        <option selected>Open this select menu</option>
-                        <option value="0">0</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
-                    </select>
-                    <label for="floatingSelectGrid">avaliableseats</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" formControlName="ticketcost">
-                        <option selected>Open this select menu</option>
-                        <option value="3000">3000</option>
-                        <option value="4000">4000</option>
-                        <option value="5000">5000</option>
-                        <option value="6000">6000</option>
-                        <option value="7000">7000</option>
-                        <option value="8000">8000</option>
-                    </select>
-                    <label for="floatingSelectGrid">ticketcost</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid" formControlName="scheduleId">
-                        <option selected>Open this select menu</option>
-                        <option value="1011">1011</option>
-                        <option value="1012">1012</option>
-                        <option value="1013">1013</option>
-                        <option value="1014">1014</option>
-                        <option value="1015">1015</option>
-                        <option value="1016">1016</option>
-                    </select>
-                    <label for="floatingSelectGrid">scheduleId</label>
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="SceduldedflightID"
+                                    class="form-control" name="scheduledflightId" />
+                                <label class="form-label" for="form3Example1q">scheduledFlightId</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form3Example1q" formControlName="avaliableseats"
+                                    class="form-control" name="avaliableseats" />
+                                <label class="form-label" for="form3Example1q">avaliableSeats</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="ticketcost"
+                                    class="form-control" name="ticketcost" />
+                                <label class="form-label" for="form3Example1q">ticketcost</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" id="form3Example1q" formControlName="Schedule" class="form-control"
+                                    name="scheduled" />
+                                <label class="form-label" for="form3Example1q">schedule</label>
+                            </div>
+
+
+                            <br>
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit"
+                                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Submit to
+                                    Add</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
-        <br>
-
-        <br><br>
-        <div class="col-md">
-            <button type="submit" class="btn btn-primary btn-lg">add SchedueldFlights</button>
-        </div>
-    </form>
-</body>
+    </div>
+</section>

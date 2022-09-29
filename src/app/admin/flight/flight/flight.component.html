@@ -1,0 +1,211 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<body>
+    <div class="container-lg">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h2>Flight <b>Details</b></h2>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="search">
+                                <i class="fa fa-search"></i>
+                                <input type="number" id="flightno" class="form-control"
+                                    placeholder="Enter the flight number..." name="flightno" #flightno>
+
+                                <button type="button" (click)="viewFlight(flightno.valueAsNumber)"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                                    class="btn btn-primary">Search</button>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+                                New</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Flight No</th>
+                            <th>Carrier Name</th>
+                            <th>Model</th>
+                            <th>Seat Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let flight of flights">
+                            <td>{{flight.flightNo}}</td>
+                            <td>{{flight.carrierName}}</td>
+                            <td>{{flight.flightModel}}</td>
+                            <td>{{flight.seatCapacity}}</td>
+                            <td>
+                                <button (click)="update(flight)" type="button" class="edit" data-toggle="tooltip"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
+                                        class="material-icons">&#xE254;</i></button>
+                                <button (click)="delete(flight.flightNo)" class="delete" title="Delete"
+                                    data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #f="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label>Flight Number</label>
+                                <input type="number" required class="form-control" id="flightNo"
+                                    placeholder="Enter Flight No" [(ngModel)]="flight.flightNo" name="flightNo">
+                            </div>
+                            <div class="form-group">
+                                <label>Model</label>
+                                <input type="text" required class="form-control" id="flightModel"
+                                    placeholder="model name" [(ngModel)]="flight.flightModel" name="flightModel">
+                            </div>
+                            <div class="form-group">
+                                <label>Carrier Name</label>
+                                <input type="text" required class="form-control" id="carrierName"
+                                    placeholder="Carrier Name" [(ngModel)]="flight.carrierName" name="carrierName">
+                            </div>
+                            <div class="form-group">
+                                <label>Seat Capacity</label>
+                                <input type="number" required class="form-control" id="seatCapacity"
+                                    placeholder="Seat Capacity" [(ngModel)]="flight.seatCapacity" name="seatCapacity">
+                            </div>
+                            <div>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-success">Save </button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal 2(for edit button)-->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Flight</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #f="ngForm" (ngSubmit)="updateFlight()">
+                            <div class="form-group">
+                                <label>Flight Number</label>
+                                <input type="number" class="form-control" id="flightNo" placeholder="Enter Flight No"
+                                    [(ngModel)]="flightToUpdate.flightNo" name="flightNo" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Model</label>
+                                <input type="text" class="form-control" id="flightModel" placeholder="model name"
+                                    [(ngModel)]="flightToUpdate.flightModel" name="flightModel">
+                            </div>
+                            <div class="form-group">
+                                <label>Carrier Name</label>
+                                <input type="text" class="form-control" id="carrierName" placeholder="Carrier Name"
+                                    [(ngModel)]="flightToUpdate.carrierName" name="carrierName">
+                            </div>
+                            <div class="form-group">
+                                <label>Seat Capacity</label>
+                                <input type="number" class="form-control" id="seatCapacity" placeholder="Seat Capacity"
+                                    [(ngModel)]="flightToUpdate.seatCapacity" name="seatCapacity">
+                            </div>
+                            <div>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-success">Update </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal 3(for get by id)-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Flight Details</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Flight No</th>
+                                    <th>Carrier Name</th>
+                                    <th>Model</th>
+                                    <th>Seat Capacity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{flight.flightNo}}</td>
+                                    <td>{{flight.carrierName}}</td>
+                                    <td>{{flight.flightModel}}</td>
+                                    <td>{{flight.seatCapacity}}</td>
+                                    <td>
+                                        <button (click)="update(flight)" type="button" class="edit"
+                                            data-toggle="tooltip" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal1"><i
+                                                class="material-icons">&#xE254;</i></button>
+                                        <button (click)="delete(flight.flightNo)" class="delete" title="Delete"
+                                            data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
