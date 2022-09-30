@@ -1,6 +1,6 @@
 import { Airport } from "./airport.model";
 
-export interface Schedule{
+export class Schedule{
     scheduleId?:number;
     srcAirport?:Airport;
     dstnAirport?:Airport;

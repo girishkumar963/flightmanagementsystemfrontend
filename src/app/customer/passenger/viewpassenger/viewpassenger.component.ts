@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Passenger } from 'src/app/models/passenger.model';
 import { PassengerserviceService } from 'src/app/services/passengerservice.service';
@@ -12,21 +12,22 @@ import { PassengerserviceService } from 'src/app/services/passengerservice.servi
 export class ViewpassengerComponent implements OnInit {
 
   passId: number;
-  passengers: Observable<Passenger[]>;
+  passengers: Passenger[];
   passenger: Passenger;
-
-  constructor(private passengerService: PassengerserviceService, private router: Router) { }
+  bookingId:number;
+  constructor(private passengerService: PassengerserviceService, private router: Router,private actRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.reloadData();
-
-    this.passengerService.getPassenger(this.passId).subscribe(data => {
-      this.passenger = data;
-    });
+    this.actRoute.params.subscribe(params=>{
+      this.bookingId=params.bid;
+      this.passengerService.getPassengersByBookingId(this.bookingId).subscribe(data=>{
+        this.passengers=data;
+      })
+    })
   }
 
   reloadData() {
-    this.passengers = this.passengerService.getAllPassengers();
+    
   }
 
   viewFullDetails = () => {

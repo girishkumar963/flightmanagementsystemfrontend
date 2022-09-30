@@ -11,7 +11,8 @@
             <th>Date</th>
             <th>Cost</th>
             <th>View Complete Details</th>
-            <th>Update Booking Details</th>
+            <th>Add Passenger Details</th>
+            <th>Update Passenger Details</th>
             <th>Cancel Booking Details</th>
             </tr>
         </thead>
@@ -28,6 +29,9 @@
             </td>
             <td>
                 <button class="btn btn-primary" (click)="updateDetails(c.bookingId)">Add Passenger</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="updatePassenger(c.bookingId)">View Passengers</button>
             </td>
             <td>
                 <button class="btn btn-danger" (click)="deleteDetails(c.bookingId)" >Cancel Booking</button>

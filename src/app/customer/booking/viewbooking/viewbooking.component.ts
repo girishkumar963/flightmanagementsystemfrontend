@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Booking } from 'src/app/models/booking.model';
+import { Passenger } from 'src/app/models/passenger.model';
 import { BookingserviceService } from 'src/app/services/bookingservice.service';
+import { PassengerserviceService } from 'src/app/services/passengerservice.service';
 
 @Component({
   selector: 'app-viewbooking',
@@ -36,8 +38,9 @@ export class ViewbookingComponent implements OnInit {
   carriername:string;
   seatCapacity:number;
   flightid:number;
+  passengerList:Passenger[];
 
-  constructor(private bookingService:BookingserviceService,private actRoute:ActivatedRoute,private router:Router) { }
+  constructor(private bookingService:BookingserviceService,private actRoute:ActivatedRoute,private router:Router,private passengerService:PassengerserviceService) { }
 
   ngOnInit(): void {
     this.displayData();
@@ -78,7 +81,16 @@ export class ViewbookingComponent implements OnInit {
   }
 
   updateDetails=(bid:number)=>{
-    this.router.navigateByUrl('/addpassenger/'+bid);
+    this.passengerService.getPassengersByBookingId(bid).subscribe(data=>{
+      this.passengerList=data;
+      if(this.passengerList.length==0){
+        this.router.navigateByUrl('/addpassenger/' + bid);
+      }
+      else{
+        alert("Passengers are already present") 
+      }
+    })
+    
   }
 
   deleteDetails(bookingId:number){
@@ -94,6 +106,10 @@ export class ViewbookingComponent implements OnInit {
       // })
     })
 
+  }
+
+  updatePassenger(bid:number){
+    this.router.navigateByUrl('/viewpassenger/'+bid)
   }
 
 }

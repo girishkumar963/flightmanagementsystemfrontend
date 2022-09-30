@@ -59,9 +59,10 @@ export class addpassengerComponent implements OnInit {
         }
         this.passengerService.postPassenger(this.passenger).subscribe(data=>{
           this.passenger=data;
+
+          alert("Passenger added successfully");
         });
         console.log(this.passenger);
-        alert("Passenger added successfully");
       })
     })
     

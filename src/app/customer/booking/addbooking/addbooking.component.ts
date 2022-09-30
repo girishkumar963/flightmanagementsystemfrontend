@@ -133,7 +133,7 @@ export class AddbookingComponent implements OnInit {
               console.log(this.booking.noOfPassengers, this.booking.scheduledFlight.scheduleFlightId, this.booking.user.userId);
               this.bookingService.postBooking(this.booking).subscribe(data => {
                 this.booking = data;
-                alert("Booking is Initialized You will be redirected to view bookings page Update the booking to add passenger data")
+                alert("Booking is confirmed!!! Add the passenger data before boarding the flight")
                 this.router.navigateByUrl('/viewbooking/'+this.user.userId)
               })
             }

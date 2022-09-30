@@ -13,6 +13,7 @@ export class PassengerserviceService {
   getPassengerApi: string;
   updatePassengerApi: string;
   deletePassengerApi: string;
+  getPassengerListByBookingIdApi:string;
 
   constructor(private http: HttpClient) {
     this.postPassengerApi = "http://localhost:8888/passengers";
@@ -20,6 +21,7 @@ export class PassengerserviceService {
     this.getPassengerApi = "http://localhost:8888/passengers/";
     this.updatePassengerApi = "http://localhost:8888/passengers/";
     this.deletePassengerApi = "http://localhost:8888/passengers/";
+    this.getPassengerListByBookingIdApi = "http://localhost:8888/bookings/passengers/"
   }
 
   public postPassenger(passenger: Passenger): Observable<Passenger> {
@@ -40,6 +42,10 @@ export class PassengerserviceService {
 
   public deletePassenger(id: number): Observable<Passenger> {
     return this.http.delete<Passenger>(this.deletePassengerApi + id);
+  }
+
+  public getPassengersByBookingId(id:number): Observable<Passenger[]>{
+    return this.http.get<Passenger[]>(this.getPassengerListByBookingIdApi+id);
   }
 
   private handleError(httpError: HttpErrorResponse) {

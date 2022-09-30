@@ -1,75 +1,259 @@
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<body>
+    <div class="container-lg">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h2>Schedule Flights</h2>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="search">
+                                <i class="fa fa-search"></i>
+                                <input type="number" id="scheduleId" class="form-control"
+                                    placeholder="Enter the Schedule Id..." name="scheduleId" #scheduleId>
+
+                                <button type="button" (click)="viewSchedule(scheduleId.valueAsNumber)"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary">Search</button>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add
+                                Schedule</button>
+                        </div>
 
 
+                    </div>
+                </div>
 
-<h1 mat-dialog-title> Add Schedule Flights </h1>
-<div mat-dialog-content>
-    <form [formGroup]="scheduleForm">
-        <label for="scheduleId"><span class="req">* </span> ScheduleId:</label>
-        <input required type="number" [(ngModel)]="schedule.scheduleId" [ngModelOptions]="{standalone: true}"
-            name="schescheduleId" id="number" class="form-control phone" maxlength="28"
-            placeholder="Enter Schedule Id..." />
-        <div>
-            <label for="floatingSelectGrid">Source Airport</label>
-            <select class="form-select" id="floatingSelectGrid" formControlName="srcAirport">
-                <option selected>Open this select menu</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Bengaluru">Bengaluru</option>
-                <option value="Pune">Pune</option>
-                <option value="Hydrabad">Hyderabad</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Chennai">Chennai</option>
-            </select>
 
-            <label for="floatingSelectGrid">Destination Airport</label>
-            <select class="form-select" id="floatingSelectGrid" formControlName="dstnAirport">
-                <option selected>Open this select menu</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Bengaluru">Bengaluru</option>
-                <option value="Pune">Pune</option>
-                <option value="Hydrabad">Hydrabad</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Chennai">Chennai</option>
-            </select>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Schedule Id</th>
+                            <th>Source Airport</th>
+                            <th>Destination Airport</th>
+                            <th>Departure Time</th>
+                            <th>Arrival time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let schedule of schedules">
+                            <td>{{schedule.scheduleId}}</td>
+                            <td>{{schedule.srcAirport.airportLocation}}</td>
+                            <td>{{schedule.dstnAirport.airportLocation}}</td>
+                            <td>{{schedule.deptDateTime}}</td>
+                            <td>{{schedule.arrDateTime}}</td>
+                            <td>
+                                <button type="button" class="edit" data-toggle="tooltip" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1"><i class="material-icons">&#xE254;</i></button>--
+                                <button class="delete" title="Delete" data-toggle="tooltip"><i
+                                        class="material-icons">&#xE872;</i></button>-->
+                            </td>
+                        </tr>
 
-        </div> -->
+                    </tbody>
+                </table>
 
-        <!---
-      <mat-form-field appearance="outline">
-        <mat-label>Destination Airport</mat-label>
-        <mat-select formControlName="dstnAirport" placeholder="Where To ?">
-          <mat-option *ngFor="let destinationAirport of airport" [value]="destinationAirport.value">
-            {{destinationAirport.viewValue}}
-          </mat-option>
-        </mat-select>
-        </mat-form-field>-->
-
-        <!-- <br>
-
-        <div class="form-group">
-            <label for="deptTime"><span class="req">* </span> DepartureTime </label>
-            <input class="form-control" required type="datetime-local" [(ngModel)]="schedule.deptTime"
-                [ngModelOptions]="{standalone: true}" name="deptTime" id="txt" placeholder="Choose Date and Time" />
-            <div class="status" id="status"></div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="arrTime"><span class="req">* </span> ArrivalTime </label>
-            <input class="form-control" required type="datetime-local" [(ngModel)]="schedule.arrTime"
-                [ngModelOptions]="{standalone: true}" name="arrTime" id="txt" placeholder="Choose Date and Time" />
-            <div class="status" id="status"></div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #f="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label>Schedule Id</label>
+                                <input type="number" required class="form-control" id="scheduleId"
+                                    placeholder="Enter scheduleId" [(ngModel)]="schedule.scheduleId" name="scheduleId">
+                            </div>
+
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <label for="floatingSelectGrid">Source Airport</label>
+                                    <select class="form-select" id="floatingSelectGrid" formControlName="srcAirport">
+                                        <option selected>Open this select menu</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Bengaluru">Bengaluru</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Hydrabad">Hyderabad</option>
+                                        <option value="Kolkata">Kolkata</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Chennai">Chennai</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <label for="floatingSelectGrid">Destination Airport</label>
+                                    <select class="form-select" id="floatingSelectGrid" formControlName="dstnAirport">
+                                        <option selected>Open this select menu</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Bengaluru">Bengaluru</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Hydrabad">Hydrabad</option>
+                                        <option value="Kolkata">Kolkata</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Chennai">Chennai</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <!----
+              <div class="form-group">
+                <label>Source Airport</label>
+                <input  type="text" required class="form-control" id="flightModel"  placeholder="model name"
+                [(ngModel)] = "schedule.srcAirport" name = "srcAirport">               </div>
+              <div class="form-group">
+                <label>Destination Airport</label>
+                <input  type="text" required class="form-control" id="carrierName"   placeholder="Destination Airport"
+                [(ngModel)] = "schedule.dstnAirport" name = "dstnAirport" >
+              </div>-->
+                            <div class="form-group">
+                                <label>Departure Time</label>
+                                <input type="datetime-local" required class="form-control" id="deptTime"
+                                    placeholder="Departure Time" [(ngModel)]="schedule.deptDateTime" name="deptTime">
+                            </div>
+                            <div class="form-group">
+                                <label>Arrival Time</label>
+                                <input type="datetime-local" required class="form-control" id="arrTime"
+                                    placeholder="Arrival Time" [(ngModel)]="schedule.arrDateTime" name="arrTime">
+                            </div>
+                            <div>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-success">Save </button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
-    </form>
-    <div mat-dialog-action [align]="'end'">
-        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-        <button style="margin-left:10px" mat-raised-button color="primary" (click)="addSchedule()"
-            mat-dialog-close>{{actionBtn}}</button>
+
+        <!-- Modal 2(for edit button)--->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Schedule</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form #f="ngForm" (ngSubmit)="updateSchedule()">
+                            <div class="form-group">
+                                <label>Schedule Id</label>
+                                <input type="number" class="form-control" id="scheduleId"
+                                    placeholder="Enter Schedule Id " [(ngModel)]="scheduleToUpdate.scheduleId"
+                                    name="scheduleId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Source Airport</label>
+                                <input type="text" class="form-control" id="srcAirport" placeholder="source Airport"
+                                    [(ngModel)]="scheduleToUpdate.scheduleId" name="source Airport">
+                            </div>
+                            <div class="form-group">
+                                <label>Destination Airport</label>
+                                <input type="text" required class="form-control" id=" dstnAirport"
+                                    placeholder="Destination Airport" [(ngModel)]="scheduleToUpdate.dstnAirport"
+                                    name="dstnAirport">
+                            </div>
+                            <div class="form-group">
+                                <label>Departure Time</label>
+                                <input type="datetime-local" required class="form-control" id="deptTime"
+                                    placeholder="Departure Time" [(ngModel)]="scheduleToUpdate.deptDateTime"
+                                    name="deptTime">
+                            </div>
+                            <div class="form-group">
+                                <label>Arrival Time</label>
+                                <input type="datetime-local" required class="form-control" id="arrTime"
+                                    placeholder="Arrival Time" [(ngModel)]="scheduleToUpdate.arrDateTime" name="arrTime">
+                            </div>
+                            <div>
+                                <button type="submit" data-bs-dismiss="modal" class="btn btn-success">Update </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal 3(for get by id)-->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Schedule Details</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ScheduleId</th>
+                                    <th>Source Airport</th>
+                                    <th>Destination Airport</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{schedule.scheduleId}}</td>
+                                    <td>{{schedule.srcAirport.airportLocation}}</td>
+                                    <td>{{schedule.dstnAirport.airportLocation}}</td>
+                                    <td>{{schedule.deptDateTime}}</td>
+                                    <td>{{schedule.arrDateTime}}</td>
+                                    <td>
+                                        <button (click)="update(schedule)" type="button" class="edit"
+                                            data-toggle="tooltip" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal1"><i
+                                                class="material-icons">&#xE254;</i></button>-
+                                        <button (click)="delete(schedule.scheduleId)" class="delete" title="Delete"
+                                            data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>-
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
- -->
+</body>

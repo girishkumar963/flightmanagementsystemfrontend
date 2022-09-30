@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
       this.user1 = data;
       console.log(this.user1);
       alert("Registered Successfully........");
-      alert("UserName is :" + this.user1.userId);
+      alert("User ID is :" + this.user1.userId);
     });
     this.router.navigateByUrl("/customerlogin");
   }

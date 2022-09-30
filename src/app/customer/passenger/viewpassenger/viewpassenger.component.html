@@ -17,14 +17,14 @@
             <th>Delete Passenger Details</th>
             </tr>
         </thead>
-        <tr *ngFor="let c of passenger;; index as i">
+        <tr *ngFor="let c of passengers;; index as i">
             <td>{{i+1}}</td>
-            <td>{{c.passenger.pnrNumber}}</td>
-            <td>{{c.passenger.passengerName}}</td>
-            <td>{{c.passenger.passengerAge}}</td>
-            <td>{{c.passenger.gender}}</td>
-            <td>{{c.passenger.passengerUIN}}</td>
-            <td>{{c.passenger.luggage}}</td>
+            <td>{{c.pnrNumber}}</td>
+            <td>{{c.passengerName}}</td>
+            <td>{{c.passengerAge}}</td>
+            <td>{{c.gender}}</td>
+            <td>{{c.passengerUIN}}</td>
+            <td>{{c.luggage}}</td>
             <td>
                 <button class="btn btn-success" (click)="viewFullDetails()">View Details</button>
             </td>
